@@ -1,8 +1,6 @@
 """
 1_ACC.py
 
-Adaptive Cruise Control (ACC) system demonstration for students.
-
 This script simulates a two-vehicle scenario:
 - A lead vehicle following a predefined speed profile, controlled by a simple driver.
 - An ego (following) vehicle controlled by a SimpleACC controller.
