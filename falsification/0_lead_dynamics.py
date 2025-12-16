@@ -1,3 +1,30 @@
+"""
+0_lead_dynamics.py
+
+Simple lead-vehicle dynamics demonstration for students.
+
+This script simulates a lead vehicle using the components provided in
+`elements.py`: a `SpeedProfile` that defines a time-varying target speed,
+a simple `Driver` controller that produces throttle and brake commands to
+track the target speed, and `Car2Dynamics` which integrates the vehicle's
+longitudinal dynamics.
+
+Simulation details:
+- Discrete time step: `dt = 0.05` seconds
+- Number of iterations: 1000 (looped calls to `step` on the models)
+- Logged signals: actual speed, target speed, throttle, brake, and time
+
+Outputs:
+- A two-panel plot showing (1) actual vs target speed and (2) throttle
+    and brake signals over time.
+
+Learning goals for students:
+- Observe closed-loop behavior of a simple driver-vehicle system.
+- See how a predefined speed profile is tracked and how actuator signals
+    (throttle/brake) change during tracking.
+- Practice running discrete-time simulations and visualizing results.
+"""
+
 import matplotlib.pyplot as plt
 
 from elements import Car2Dynamics, SpeedProfile, Driver

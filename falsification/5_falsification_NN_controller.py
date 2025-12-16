@@ -1,3 +1,38 @@
+"""
+5_falsification_NN_controller.py
+
+Falsification of the learned neural network ACC controller using S-TalirO.
+
+This script extends the falsification approach from script 2_falsification_ACC.py
+to the learned neural network controller (trained in script 3_train_NN_controller.py).
+Instead of the rule-based SimpleACC, the ego vehicle is now controlled by the
+ACCNetFull neural network.
+
+The falsification process:
+- Loads a pre-trained neural network controller from "model.pth".
+- Parametrizes the lead vehicle's speed profile by time breakpoints (t0, t1, t2)
+  and velocity setpoints (v0, v1, v2), just as in script 2.
+- Uses a DualAnnealing optimizer to search for scenarios that violate the safety
+  specification: "always (ad > 0)" (no collision).
+
+Purpose:
+- Compare the robustness of learned controllers vs. rule-based controllers.
+- Identify failure modes and edge cases of data-driven control systems.
+- Demonstrate that neural network controllers may have failure scenarios that
+  were not covered in the training data.
+
+Outputs:
+- Minimum-cost evaluation trace (closest to violating the specification).
+- Parameter values (lead vehicle speed profile) that maximize violation risk.
+
+Learning goals for students:
+- Understand that learned models need robust testing and validation.
+- See how falsification applies to both traditional and learning-based systems.
+- Recognize the importance of finding corner cases and edge cases beyond
+  the training distribution.
+- Compare robustness metrics of different controller designs.
+"""
+
 import logging
 from typing import Any, Final
 

@@ -1,3 +1,43 @@
+"""
+elements.py
+
+Core components and models for vehicle dynamics and control simulation.
+
+This module provides the building blocks for the teaching examples:
+
+Classes:
+  - CarParams: Vehicle parameters (mass, engine force, brake force, aerodynamics,
+    rolling resistance, etc.) used by the Car2Dynamics model.
+  
+  - Driver: A simple PI controller that converts a target speed into throttle
+    and brake commands. Models a basic human driver behavior.
+  
+  - SpeedProfile: A piecewise-constant speed profile defined by time breakpoints
+    and velocity setpoints. Used to generate lead vehicle behavior.
+  
+  - Car2Dynamics: Longitudinal vehicle dynamics model integrating throttle and
+    brake forces into velocity and position. Handles engine force, braking,
+    aerodynamic drag, and rolling resistance.
+  
+  - SimpleACC: A rule-based Adaptive Cruise Control system. Maintains a desired
+    inter-vehicle distance while tracking a speed setpoint. Uses PI control on
+    speed and distance error, with emergency braking on time-to-collision.
+  
+  - ACCNetFull: A feedforward neural network controller trained to mimic ACC
+    behavior. Takes observations (ego speed, lead speed, relative states, TTC)
+    and outputs throttle/brake commands.
+
+Functions:
+  - inner_model: Simulates a complete two-vehicle scenario with parametric
+    lead vehicle speed profile. Returns trajectories of speed, distance, and
+    control signals for analysis and training.
+
+Learning goals:
+  - Understand longitudinal vehicle dynamics and control strategies.
+  - Work with rule-based controllers (SimpleACC) vs. learned controllers (ACCNetFull).
+  - Use simulation functions for data collection and evaluation.
+"""
+
 from dataclasses import dataclass
 
 import numpy as np

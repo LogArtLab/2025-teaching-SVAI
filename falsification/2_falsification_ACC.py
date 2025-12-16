@@ -1,3 +1,34 @@
+"""
+2_falsification_ACC.py
+
+Falsification of the Adaptive Cruise Control (ACC) system using S-TalirO.
+
+This script uses S-TalirO (Simulink-based Testing, Analysis, and falsification
+of cybeRphysical systems using Optimization) to automatically search for ACC
+system failures.
+
+The falsification process:
+- Parametrizes the lead vehicle's speed profile by time breakpoints (t0, t1, t2)
+  and velocity setpoints (v0, v1, v2).
+- Uses a DualAnnealing optimizer to search the parameter space for scenarios that
+  violate a safety specification.
+- Safety specification: "always (ad > 0)" — the actual distance between vehicles
+  must remain positive (no collision).
+
+If the optimizer finds parameters that lead to a violation, the test is falsified
+(i.e., a failure scenario is discovered). Otherwise, the specification is considered
+robust within the explored parameter space.
+
+Outputs:
+- Minimum-cost evaluation trace (the closest to violating the specification).
+- Parameter values (lead vehicle speed profile) associated with this trace.
+
+Learning goals for students:
+- Understand automated falsification and formal verification concepts.
+- Learn how to set up optimization-based testing for cyber-physical systems.
+- See how to use tools like S-TalirO to find edge cases and potential failures.
+"""
+
 import logging
 from typing import Final, Any
 

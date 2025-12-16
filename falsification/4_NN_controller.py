@@ -1,3 +1,37 @@
+"""
+4_NN_controller.py
+
+Closed-loop simulation with a learned neural network ACC controller.
+
+This script demonstrates the use of a pre-trained neural network controller
+(trained in script 3_train_NN_controller.py) to control an ego vehicle in a
+two-vehicle scenario.
+
+Key differences from 1_ACC.py:
+- The rule-based SimpleACC controller is replaced by an ACCNetFull neural
+  network that was trained on simulation data.
+- The network takes 5 observations as input: ego speed, lead speed, ego
+  position, lead position, and time-to-collision (TTC).
+- The network outputs throttle and brake commands directly.
+
+Simulation details:
+- Lead vehicle follows a predefined speed profile.
+- Ego vehicle is controlled by the learned neural network.
+- Both vehicles use the same longitudinal dynamics model (Car2Dynamics).
+- Discrete time step: `dt = 0.05` seconds.
+- Total simulation duration derived from the lead vehicle's speed profile.
+
+Outputs:
+- A two-panel plot showing (1) speed profiles (lead, ego, and original setpoint)
+  and (2) actual vs. desired inter-vehicle distance over time.
+
+Learning goals for students:
+- Understand how learned controllers are deployed in closed-loop systems.
+- See the difference between rule-based and data-driven control approaches.
+- Evaluate the performance of neural network controllers in realistic scenarios.
+- Practice working with pre-trained models and inference in PyTorch.
+"""
+
 import torch
 
 from elements import Car2Dynamics, SpeedProfile, Driver, SimpleACC, ACCNetFull

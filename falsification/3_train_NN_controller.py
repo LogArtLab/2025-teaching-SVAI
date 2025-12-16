@@ -1,3 +1,42 @@
+"""
+3_train_NN_controller.py
+
+This script demonstrates supervised learning of a neural network controller
+to replace the rule-based SimpleACC system. The goal is to learn a mapping
+from system observations to vehicle control actions (throttle and brake).
+
+Training process:
+1. Generate a diverse dataset by collecting observations and actions from
+   many simulated episodes with random lead vehicle speed profiles.
+2. Train a neural network (ACCNetFull) to predict throttle/brake commands
+   from system state observations.
+3. Evaluate the trained network on a separate test dataset.
+4. Save the trained model weights to "model.pth" for later use.
+
+Dataset:
+- Observations (5 features): actual distance, desired distance, ego velocity,
+  lead velocity, and time-to-collision (TTC).
+- Actions (2 outputs): throttle and brake commands.
+- Training: 300 episodes × ~1000 samples per episode = ~300k samples.
+- Testing: 100 episodes × ~1000 samples per episode = ~100k samples.
+
+Network architecture:
+- `ACCNetFull`: A fully connected neural network defined in `elements.py`.
+- Loss function: Mean Squared Error (MSE).
+- Optimizer: Adam with learning rate 1e-3.
+- Training: 40 epochs with batch size 256.
+
+Outputs:
+- Training and test loss curves (printed to console).
+- Saved model weights in "model.pth".
+
+Learning goals for students:
+- Understand data-driven control and supervised learning for CPS.
+- Learn how to collect training data from simulation.
+- Practice training and evaluating neural network models in PyTorch.
+- See how learned controllers can replace hand-crafted controllers.
+"""
+
 import random
 
 import numpy as np

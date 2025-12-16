@@ -1,3 +1,35 @@
+"""
+1_ACC.py
+
+Adaptive Cruise Control (ACC) system demonstration for students.
+
+This script simulates a two-vehicle scenario:
+- A lead vehicle following a predefined speed profile, controlled by a simple driver.
+- An ego (following) vehicle controlled by a SimpleACC controller.
+
+The SimpleACC controller maintains a desired distance from the lead vehicle while
+tracking a constant speed setpoint. The simulation demonstrates how the ACC system
+adapts to the lead vehicle's motion.
+
+Simulation details:
+- Discrete time step: `dt = 0.05` seconds
+- Lead vehicle starts at x = 30 m; ego vehicle starts at x = 0 m.
+- Desired speed setpoint for ego vehicle: `ego_v_set = 20` m/s.
+- Total simulation duration computed from lead vehicle's speed profile.
+- Logged signals: ego speed, lead speed, actual inter-vehicle distance,
+  and desired ACC distance.
+
+Outputs:
+- A two-panel plot showing (1) speed profiles (lead, ego, and setpoint) and
+  (2) actual vs. desired inter-vehicle distance over time.
+
+Learning goals for students:
+- Understand how ACC controllers maintain desired following behavior.
+- Observe the system response to lead vehicle maneuvers.
+- Analyze the trade-off between speed tracking and distance maintenance.
+- Practice simulating multi-agent systems with coupled dynamics.
+"""
+
 from elements import Car2Dynamics, SpeedProfile, Driver, SimpleACC
 
 # Lead car
